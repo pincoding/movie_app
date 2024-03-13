@@ -17,6 +17,9 @@ const options = {
     
     //메서드,변수 등등 옵션안에 작성
 };
+
+export const nowPlaying = () => fetch(url("movie/now_playing"), options).then(res => res.json());
+
 //내일 now_playing
 
 

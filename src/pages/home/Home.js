@@ -25,7 +25,12 @@ export const Home = () => {
         "loading.."
       ) : (
         // 지금은 루트상태 위에서 useState(true); 트루로 설정해서 로딩만나옴
-        <>{nowDate && <MainBanner imgUrl={nowDate} />}</>
+        <>
+          {nowDate && <MainBanner imgUrl={nowDate} />}
+
+          <h3>{}</h3>
+          <p>{}</p>
+        </>
         //  useEffect 잴 밑에  setIsLoading(false); 설정 : 이부분이 전부 읽고나면 false로 실행시켜주세요
       )}
     </>

@@ -1,28 +1,33 @@
-import { useEffect, useState } from "react"
-import {nowPlaying} from "../../api"
-import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { nowPlaying } from "../../api";
+import { MainBanner } from "./MainBanner";
+// import styled from "styled-components";
+// import { IMG_URL } from "../../constant/url";
 
-const Banner = styled.div`
-    height: 80vh;
-    background: url(https://image.tmdb.org/t/p/original/${props => props.$bgUrl})no-repeat center/cover;
-`;
 export const Home = () => {
-    // const nowResult = nowPlaying();
-    // console.log(nowResult);
+  // const nowResult = nowPlaying();
+  // console.log(nowResult);
+  const [isLoading, setIsLoading] = useState(true);
+  const [nowDate, setnowDate] = useState();
 
-    const [nowDate, setnowDate] = useState();
+  useEffect(() => {
+    (async () => {
+      const { results } = await nowPlaying();
+      setnowDate(results);
+      setIsLoading(false);
+    })();
+  }, []);
+  console.log(nowDate);
 
-    useEffect(() => {
-        (async ()=>{
-            const {results} = await nowPlaying();
-            setnowDate(results);
-        })();
-    }, []);
-    console.log(nowDate);
-
-
-    return <div>
-        <Banner $bgUrl = {nowDate[3].backdrop_path}></Banner>
-    </div>
-}
-
+  return (
+    <>
+      {isLoading ? (
+        "loading.."
+      ) : (
+        // 지금은 루트상태 위에서 useState(true); 트루로 설정해서 로딩만나옴
+        <>{nowDate && <MainBanner imgUrl={nowDate} />}</>
+        //  useEffect 잴 밑에  setIsLoading(false); 설정 : 이부분이 전부 읽고나면 false로 실행시켜주세요
+      )}
+    </>
+  );
+};

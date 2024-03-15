@@ -3,9 +3,8 @@
 - [x] Router 설정
 - [x] Header 컴포넌트 구성
 - [] Footer컴포넌트 구성
-- [] 반응형
 - [] 각 컴포넌트 제작
-- [] Api설정
+- [x] Api설정
 - [x] Loading 설정
 - [] Home ui 및 페이지 구성
 - [] Detail ui 및 페이지 구성
@@ -14,6 +13,7 @@
 - [] Helmet
 - [] scrollTo
 - [] Deploy(배포)
+- [] 반응형
 
 ## 설치항목
 

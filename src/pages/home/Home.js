@@ -7,27 +7,11 @@ import { Link } from "react-router-dom";
 // import styled from "styled-components";
 // import { IMG_URL } from "../../constant/url";
 import styled from "styled-components";
-import { IMG_URL } from "../../constant/url";
+import { IMG_URL, IMG_URL_500 } from "../../constant/url";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Movies } from "./Movies";
 
-const Section = styled.section`
-  padding: 100px;
-  padding-right: 0;
-`;
-const Title = styled.div`
-  font-size: 50px;
-  font-weight: 700;
-  margin-bottom: 30px;
-`;
-const Bg = styled.div`
-  height: 370px;
-  background: url(${IMG_URL}${(props) => props.$bgUrl}) no-repeat center/cover;
-`;
-const MovieTitle = styled.h3`
-  font-size: 18px;
-  margin-top: 20px;
-`;
 export const Home = () => {
   // const nowResult = nowPlaying();
   // console.log(nowResult);
@@ -60,19 +44,7 @@ export const Home = () => {
           {nowDate && (
             <>
               <MainBanner imgUrl={nowDate} />
-              <Section>
-                <Title>현재 상영 영화</Title>
-                <Swiper slidesPerView={5.2} spaceBetween={20}>
-                  {nowDate.map((data) => (
-                    <SwiperSlide key={data.id}>
-                      <Link to="#">
-                        <Bg $bgUrl={data.poster_path} />
-                        <MovieTitle>{data.title}</MovieTitle>
-                      </Link>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </Section>
+              <Movies movieDate={nowDate} titletext={"현재 상영 영화"} />
             </>
           )}
         </>

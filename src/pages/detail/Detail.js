@@ -53,21 +53,19 @@ export const Detail = () => {
   // 객체안에 내가지정한 아이디 번호 가지고 오기
   const [data, setdata] = useState();
   const [Loading, setLoading] = useState(true);
-  const [genData, setgenData] = useState(data?.genres);
   useEffect(() => {
     (async () => {
       try {
         const detailData = await moiveDetail(id);
         setdata(detailData);
-        console.log(detailData);
+        // console.log(detailData);
         setLoading(false);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [id]);
-  console.log(data);
-  console.log(genData);
+  console.log(data?.genres[0].name);
   return (
     <div>
       {Loading ? (
@@ -80,13 +78,13 @@ export const Detail = () => {
             </Bg>
             <Con>
               <h3>{data?.title}</h3>
-              <div className="info">평점{data?.vote_average}점</div>
+              <div className="info">평점{Math.round(data?.vote_average)}점</div>
               <div className="info">{data?.runtime}</div>
               <div className="info">{data?.release_date}</div>
               <Genres className="info">
-                <li>코믹</li>
-                <li>액션</li>
-                <li>판타지</li>
+                {data?.genres.map((data) => (
+                  <li key={data.id}>{data?.name}</li>
+                ))}
               </Genres>
 
               <p>{data?.overview}</p>
